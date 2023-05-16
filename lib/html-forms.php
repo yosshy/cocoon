@@ -303,6 +303,9 @@ endif;
 //テキストボックスの生成
 if ( !function_exists( 'generate_textbox_tag' ) ):
 function generate_textbox_tag($name, $value, $placeholder, $cols = DEFAULT_INPUT_COLS){
+  if (!$value) {
+    $value = "";
+  }
   ob_start();?>
   <input type="text" id="<?php echo $name; ?>" name="<?php echo $name; ?>" size="<?php echo $cols; ?>" value="<?php echo esc_attr(stripslashes_deep(strip_tags($value))); ?>" placeholder="<?php echo esc_attr($placeholder); ?>">
   <?php

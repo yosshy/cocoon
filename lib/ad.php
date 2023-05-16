@@ -12,6 +12,9 @@ if ( !function_exists( 'is_ads_visible' ) ):
 function is_ads_visible(){
   //$ads_visible = is_all_ads_visible();
   $tmp_post_ids = get_ad_exclude_post_ids();
+  if (!$tmp_post_ids) {
+    $tmp_post_ids = '';
+  }
   $post_ids = explode(',', $tmp_post_ids);
   $post_ids_empty = empty($tmp_post_ids);
 
@@ -43,6 +46,9 @@ if ( !function_exists( 'get_adsense_ids' ) ):
 function get_adsense_ids($code = null){
   if (!$code) {
     $code = get_ad_code();
+  }
+  if (!$code) {
+    return [];
   }
 
   //AdSenseコードからIDを取得する
